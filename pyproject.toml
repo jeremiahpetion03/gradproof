@@ -1,0 +1,14 @@
+[project]
+name = "gradproof"
+version = "0.1.0"
+description = "A GPT-style transformer in pure NumPy with hand-written backprop, verified against finite differences and PyTorch autograd."
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+torch = ["torch>=2.2"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "tests"]
+testpaths = ["tests"]

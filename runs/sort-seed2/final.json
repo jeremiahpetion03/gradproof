@@ -1,0 +1,9 @@
+{
+  "final_loss": 6.875067356304498e-06,
+  "eval_exact_match": 1.0,
+  "eval_token_accuracy": 1.0,
+  "eval_n": 1000,
+  "train_seconds": 56.55,
+  "train_tokens_per_sec": 54322,
+  "num_params": 102539
+}

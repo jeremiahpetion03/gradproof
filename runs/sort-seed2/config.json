@@ -1,0 +1,29 @@
+{
+  "train": {
+    "task": "sort",
+    "length": 8,
+    "steps": 3000,
+    "batch": 64,
+    "lr": 0.003,
+    "warmup": 100,
+    "weight_decay": 0.01,
+    "clip": 1.0,
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 64,
+    "dtype": "float32",
+    "seed": 2,
+    "eval_n": 1000,
+    "log_every": 100
+  },
+  "model": {
+    "vocab_size": 11,
+    "block_size": 16,
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 64
+  },
+  "num_params": 102539,
+  "numpy": "2.5.3",
+  "python": "3.13.18"
+}

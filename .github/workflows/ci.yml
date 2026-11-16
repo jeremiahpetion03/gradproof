@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pytest
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Tests (gradient checks, planted bugs, numerics, reproducibility, PyTorch parity)
+        run: pytest -v -rs
+      - name: Smoke-train and require the task to be learned
+        run: |
+          python -m gradproof.train --task reverse --length 4 --steps 400 --batch 32 \
+            --d-model 32 --n-head 2 --eval-n 200 --out smoke
+          python -c "import json; r = json.load(open('smoke/final.json')); assert r['eval_exact_match'] > 0.9, r"
